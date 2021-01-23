@@ -1,8 +1,10 @@
 import requests
 import json
 
+from config import Config
+
 # API info
-# api_key = "something"
+api_key = Config.IEX_KEY
 symbol = "AAPL"
 
 # Make a list of desired iex items
