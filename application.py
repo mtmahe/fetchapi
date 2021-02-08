@@ -84,6 +84,6 @@ print(type,name,symbol,price,date)
 # Post it
 newHeaders = {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-response = requests.post('http://test.chezmahe.com/receive', data = jsonData, headers=newHeaders)
+response = requests.post('http://chezmahe.com/receive', data = jsonData, headers=newHeaders)
 
 print(response)
