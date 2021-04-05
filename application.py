@@ -5,7 +5,9 @@ from config import Config
 
 # API info
 api_key = Config.IEX_KEY
+cm_key = Config.CM_KEY
 symbol = "AAPL"
+
 
 # Make a list of desired iex items
 toGetIex = [
@@ -25,6 +27,7 @@ toGetIex = [
     "NFLX",
     "CRM"
 ]
+
 
 # Iterate through Iex list and make api calls
 responseDict = {}
@@ -58,11 +61,18 @@ for key in keys:
     price = req_data[key]["price"]
     date = req_data[key]["date"]
 
-print(type,name,symbol,price,date)
+#print(type,name,symbol,price,date)
 
 # Post it
-newHeaders = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-
+newHeaders = {'Content-type': 'application/json',
+    'Authorization': cm_key,
+    'Accept': 'text/plain'
+    }
+print("Uploading to server...")
 response = requests.post('http://chezmahe.com/receive', data = jsonData, headers=newHeaders)
 
-print(response)
+# Check response
+if response.status_code == 200:
+    print(response.content)
+else:
+    print('[?] Unexpected Error: [HTTP {0}]: Content {1}'.format(response.status_code, response.content))
