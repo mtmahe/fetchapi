@@ -32,7 +32,7 @@ toGetIex = [
 # Iterate through Iex list and make api calls
 responseDict = {}
 for item in toGetIex:
-    response = requests.get(f"https://cloud-sse.iexapis.com/stable/stock/{item}/quote?token={api_key}")
+    response = requests.get(f"https://cloud.iexapis.com/stable/stock/{item}/quote?token={api_key}")
     response.raise_for_status()
     quote = response.json()
 
