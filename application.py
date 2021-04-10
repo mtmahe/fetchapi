@@ -69,7 +69,7 @@ newHeaders = {'Content-type': 'application/json',
     'Accept': 'text/plain'
     }
 print("Uploading to server...")
-response = requests.post('http://chezmahe.com/receive', data = jsonData, headers=newHeaders)
+response = requests.post('https://chezmahe.com/receive', data = jsonData, headers=newHeaders)
 
 # Check response
 if response.status_code == 200:
