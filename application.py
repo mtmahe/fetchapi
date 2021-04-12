@@ -32,7 +32,8 @@ toGetIex = [
 # Iterate through Iex list and make api calls
 responseDict = {}
 for item in toGetIex:
-    response = requests.get(f"https://cloud-sse.iexapis.com/stable/stock/{item}/quote?token={api_key}")
+    #response = requests.get(f"https://cloud-sse.iexapis.com/stable/stock/{item}/quote?token={api_key}")
+    response = requests.get(f"https://cloud.iexapis.com/stable/stock/{item}/quote?token={api_key}")
     response.raise_for_status()
     quote = response.json()
 
@@ -50,7 +51,7 @@ print(responseDict)
 # Convert to json
 jsonData = json.dumps(responseDict)
 
-# Okay, now what does server need to do to break it up?
+# Okay, now break it up
 req_data = json.loads(jsonData)
 
 keys = req_data.keys()
