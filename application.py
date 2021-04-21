@@ -4,7 +4,7 @@ import json
 from config import Config
 
 # API info
-api_key = Config.IEX_KEY
+iex_key = Config.IEX_KEY
 cm_key = Config.CM_KEY
 symbol = "AAPL"
 
@@ -33,7 +33,7 @@ toGetIex = [
 responseDict = {}
 for item in toGetIex:
     #response = requests.get(f"https://cloud-sse.iexapis.com/stable/stock/{item}/quote?token={api_key}")
-    response = requests.get(f"https://cloud.iexapis.com/stable/stock/{item}/quote?token={api_key}")
+    response = requests.get(f"https://cloud.iexapis.com/stable/stock/{item}/quote?token={iex_key}")
     response.raise_for_status()
     quote = response.json()
 
@@ -70,7 +70,8 @@ newHeaders = {'Content-type': 'application/json',
     'Accept': 'text/plain'
     }
 print("Uploading to server...")
-response = requests.post('https://chezmahe.com/receive', data = jsonData, headers=newHeaders)
+#response = requests.post('https://chezmahe.com/receive', data = jsonData, headers=newHeaders)
+response = requests.post('http://127.0.0.1:5000/receive', data = jsonData, headers=newHeaders)
 
 # Check response
 if response.status_code == 200:
